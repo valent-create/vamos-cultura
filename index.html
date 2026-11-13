@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vamos Cultura - Cotizador de Servicios</title>
+    <style>
+        :root {
+            --dark-purple: #33204F;
+            --buttercup: #F5C542;
+            --bg-color: #f8f9fa;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--dark-purple);
+            line-height: 1.5;
+        }
+
+        header {
+            background-color: var(--dark-purple);
+            color: var(--buttercup);
+            padding: 2rem 1rem;
+            text-align: center;
+            border-bottom: 5px solid var(--buttercup);
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-style: italic;
+            margin-top: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        main {
+            padding: 2rem 1.5rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .instructions {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--dark-purple);
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .service-card {
+            background: #ffffff;
+            border: 2px solid var(--dark-purple);
+            border-radius: 12px;
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .service-card.selected {
+            background-color: #fdf3d8;
+            border-color: var(--buttercup);
+        }
+
+        .service-card input[type="checkbox"] {
+            width: 24px;
+            height: 24px;
+            margin-top: 0.2rem;
+            accent-color: var(--dark-purple);
+            cursor: pointer;
+        }
+
+        .service-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.4rem;
+            line-height: 1.3;
+        }
+
+        .service-info p {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--dark-purple);
+        }
+
+        .total-box {
+            background-color: var(--dark-purple);
+            color: #ffffff;
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .total-box span {
+            display: block;
+            color: var(--buttercup);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .total-box strong {
+            font-size: 2.2rem;
+        }
+
+        .btn-whatsapp {
+            display: block;
+            width: 100%;
+            background-color: var(--buttercup);
+            color: var(--dark-purple);
+            text-align: center;
+            padding: 1.2rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            border: 2px solid var(--dark-purple);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.1s ease, background 0.2s ease;
+        }
+
+        .btn-whatsapp:active {
+            transform: scale(0.98);
+        }
+
+        footer {
+            background-color: var(--dark-purple);
+            color: #ffffff;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Vamos Cultura</h1>
+        <p>La cultura nos une, las ideas nos mueven</p>
+    </header>
+
+    <main>
+        <p class="instructions">Selecciona los servicios que deseas cotizar para tu proyecto:</p>
+
+        <div class="form-group">
+            <label for="clienteNombre">Tu nombre o el de tu empresa:</label>
+            <input type="text" id="clienteNombre" placeholder="Ej. Juan Pérez">
+        </div>
+
+        <!-- Se agregaron identificadores (id) y el evento onchange directo -->
+        <label class="service-card" id="tarjeta-1">
+            <input type="checkbox" id="chk-1" value="3500000" data-name="Producción audiovisual, fotografía y grabación" onchange="calcularTotal()">
+            <div class="service-info">
+                <h3>Producción audiovisual, fotografía y grabación</h3>
+                <p>$ 3.500.000</p>
+            </div>
+        </label>
+
+        <label class="service-card" id="tarjeta-2">
+            <input type="checkbox" id="chk-2" value="900000" data-name="Organización, producción de eventos, planeación y coordinación" onchange="calcularTotal()">
+            <div class="service-info">
+                <h3>Organización, producción de eventos, planeación y coordinación</h3>
+                <p>$ 900.000</p>
+            </div>
+        </label>
+
+        <div class="total-box">
+            <span>Total Estimado</span>
+            <strong id="precioTotal">$ 0</strong>
+        </div>
+
+        <!-- Botón con type="button" explícito y onclick directo -->
+        <button type="button" class="btn-whatsapp" onclick="enviarWhatsApp()">Enviar por WhatsApp</button>
+    </main>
+
+    <footer>
+        Proyecto académico · Creación de Empresas · UNIPAZ 2026
+    </footer>
+
+    <script>
+        // Función global para dar formato a los pesos
+        function formatearPesos(numero) {
+            return '$ ' + numero.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+
+        // Función que se activa cada vez que se toca una casilla (onchange)
+        function calcularTotal() {
+            let total = 0;
+            
+            // Evaluamos el checkbox 1
+            const chk1 = document.getElementById('chk-1');
+            const tarjeta1 = document.getElementById('tarjeta-1');
+            if (chk1.checked) {
+                total += parseInt(chk1.value) || 0;
+                tarjeta1.classList.add('selected');
+            } else {
+                tarjeta1.classList.remove('selected');
+            }
+
+            // Evaluamos el checkbox 2
+            const chk2 = document.getElementById('chk-2');
+            const tarjeta2 = document.getElementById('tarjeta-2');
+            if (chk2.checked) {
+                total += parseInt(chk2.value) || 0;
+                tarjeta2.classList.add('selected');
+            } else {
+                tarjeta2.classList.remove('selected');
+            }
+
+            // Mostramos el total
+            document.getElementById('precioTotal').innerText = formatearPesos(total);
+        }
+
+        // Función para enviar a WhatsApp
+        function enviarWhatsApp() {
+            // ¡IMPORTANTE! Reemplaza este número por tu número real
+            const numeroEmpresa = "3000000000"; 
+            
+            const nombreInput = document.getElementById('clienteNombre').value.trim();
+            const nombre = nombreInput !== "" ? nombreInput : "Un cliente";
+            
+            const chk1 = document.getElementById('chk-1');
+            const chk2 = document.getElementById('chk-2');
+
+            if (!chk1.checked && !chk2.checked) {
+                alert("Por favor, selecciona al menos un servicio para cotizar.");
+                return;
+            }
+
+            let listaServiciosTexto = "";
+            let total = 0;
+
+            if (chk1.checked) {
+                listaServiciosTexto += `- ${chk1.getAttribute('data-name')}\n`;
+                total += parseInt(chk1.value) || 0;
+            }
+            
+            if (chk2.checked) {
+                listaServiciosTexto += `- ${chk2.getAttribute('data-name')}\n`;
+                total += parseInt(chk2.value) || 0;
+            }
+
+            const mensaje = `¡Hola, Vamos Cultura! Soy ${nombre}. Me interesa cotizar los siguientes servicios en Barrancabermeja:\n\n${listaServiciosTexto}\n*Total estimado:* ${formatearPesos(total)}\n\nQuedo atento(a) para más detalles.`;
+            
+            const url = `https://wa.me/57${numeroEmpresa}?text=${encodeURIComponent(mensaje)}`;
+            
+            // Método seguro para abrir WhatsApp en cualquier dispositivo
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
