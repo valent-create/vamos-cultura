@@ -1,178 +1,975 @@
-{
-  "version": 2,
-  "empresa": {
-    "nombre": "Vamos Cultura",
-    "eslogan": "La cultura nos une, las ideas nos mueven.",
-    "descripcion": "Empresa dedicada a la organización de eventos culturales y a la producción audiovisual para artistas, emprendimientos y comunidades, promoviendo el talento local y la participación cultural.",
-    "sector": "Cultural, artístico y audiovisual",
-    "ubicacion": {
-      "ciudad": "Barrancabermeja",
-      "departamento": "Santander",
-      "pais": "Colombia"
-    },
-    "identidadVisual": {
-      "emoji": "🪀",
-      "colorPrincipal": "#33204F",
-      "colorAcento": "#F5C542",
-      "tono": [
-        "Creativo",
-        "Juvenil",
-        "Espontáneo",
-        "Cercano",
-        "Profesional"
-      ]
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vamos Cultura 🪀 | Productora Audiovisual & Eventos Culturales</title>
+  <style>
+    /* ==========================================================================
+       1. IDENTIDAD VISUAL — VAMOS CULTURA (Estética Productora & Arte)
+       ========================================================================== */
+    :root {
+      --morado-base: #33204F;
+      --morado-oscuro: #1d1030;
+      --morado-tarjeta: #281840;
+      --morado-borde: #47306b;
+      --dorado-acento: #F5C542;
+      --dorado-hover: #ffcf4d;
+      --whatsapp-verde: #25D366;
+      --whatsapp-hover: #1ebe5d;
+      --texto-claro: #f8f6fc;
+      --texto-suave: #c4b8d9;
+      --radio-tarjeta: 20px;
+      --sombra-cine: 0 18px 40px rgba(0, 0, 0, 0.45);
     }
-  },
 
-  "configuracion": {
-    "moneda": "COP",
-    "periodoFinanciero": "mensual",
-    "modeloCalculo": "por_servicio",
-    "servicioPrincipal": "produccion_audiovisual",
-    "incluirImpuestos": false,
-    "incluirFinanciacion": false
-  },
-
-  "oferta": [
-    {
-      "id": "eventos_culturales",
-      "nombre": "Organización y producción de eventos culturales",
-      "descripcion": "Planeación, coordinación y producción de festivales, ferias, encuentros artísticos y actividades comunitarias.",
-      "precio": 900000,
-      "unidadVenta": "evento",
-      "activo": true
-    },
-    {
-      "id": "produccion_audiovisual",
-      "nombre": "Producción audiovisual y cobertura de eventos",
-      "descripcion": "Fotografía, grabación, edición de videos y creación de contenido audiovisual para eventos.",
-      "precio": 3500000,
-      "unidadVenta": "proyecto",
-      "activo": true
+    /* ==========================================================================
+       2. RESET Y DISEÑO MOBILE-FIRST
+       ========================================================================== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
-  ],
 
-  "unidad": {
-    "servicioId": "produccion_audiovisual",
-    "nombre": "Producción audiovisual y cobertura de eventos",
-    "precio": 3500000,
-    "unidadesMes": 3,
-    "unidadMedida": "proyecto"
-  },
+    body {
+      background: radial-gradient(circle at top right, #45296e 0%, var(--morado-base) 42%, var(--morado-oscuro) 100%);
+      color: var(--texto-claro);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
 
-  "costos": {
-    "md": [
+    /* ==========================================================================
+       3. CABECERA DE PRODUCTORA (Con estética de visor de cámara / REC)
+       ========================================================================== */
+    header {
+      padding: 22px 20px 12px;
+      text-align: center;
+      max-width: 560px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .badge-rec {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245, 197, 66, 0.14);
+      border: 1px solid rgba(245, 197, 66, 0.4);
+      color: var(--dorado-acento);
+      padding: 5px 14px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .punto-rec {
+      width: 8px;
+      height: 8px;
+      background-color: #ff4d4d;
+      border-radius: 50%;
+      animation: parpadeo 1.4s infinite ease-in-out;
+    }
+
+    @keyframes parpadeo {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.3; transform: scale(0.85); }
+    }
+
+    header h1 {
+      font-size: 1.75rem;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+    }
+
+    header h1 span {
+      color: var(--dorado-acento);
+    }
+
+    .eslogan {
+      font-size: 0.92rem;
+      color: var(--texto-suave);
+      margin-top: 4px;
+      font-style: italic;
+    }
+
+    /* ==========================================================================
+       4. BARRA DE PROGRESO CINEMATOGRÁFICA
+       ========================================================================== */
+    .progreso-contenedor {
+      max-width: 560px;
+      width: 100%;
+      margin: 14px auto 0;
+      padding: 0 20px;
+    }
+
+    .progreso-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      color: var(--texto-suave);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .barra-fondo {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .barra-relleno {
+      height: 100%;
+      width: 16.6%;
+      background: linear-gradient(90deg, var(--dorado-acento), #ffe082);
+      border-radius: 10px;
+      transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* ==========================================================================
+       5. CONTENEDOR DEL CUESTIONARIO (Una pregunta a la vez)
+       ========================================================================== */
+    main {
+      max-width: 560px;
+      width: 100%;
+      margin: 18px auto;
+      padding: 0 18px;
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    .escena-card {
+      width: 100%;
+      background: var(--morado-tarjeta);
+      border: 1px solid var(--morado-borde);
+      border-radius: var(--radio-tarjeta);
+      padding: 26px 22px;
+      box-shadow: var(--sombra-cine);
+      position: relative;
+      animation: entrarEscena 0.38s ease forwards;
+    }
+
+    .escena-card::before,
+    .escena-card::after {
+      content: "";
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-color: var(--dorado-acento);
+      border-style: solid;
+      opacity: 0.55;
+      pointer-events: none;
+    }
+    .escena-card::before {
+      top: 12px;
+      left: 12px;
+      border-width: 2px 0 0 2px;
+    }
+    .escena-card::after {
+      bottom: 12px;
+      right: 12px;
+      border-width: 0 2px 2px 0;
+    }
+
+    @keyframes entrarEscena {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .paso-etiqueta {
+      color: var(--dorado-acento);
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .pregunta-titulo {
+      font-size: 1.32rem;
+      font-weight: 800;
+      line-height: 1.28;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    .pregunta-subtitulo {
+      font-size: 0.88rem;
+      color: var(--texto-suave);
+      margin-bottom: 20px;
+    }
+
+    /* ==========================================================================
+       6. TARJETAS DE OPCIÓN INTERACTIVAS
+       ========================================================================== */
+    .grid-opciones {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .opcion-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 2px solid var(--morado-borde);
+      border-radius: 14px;
+      padding: 15px 16px;
+      text-align: left;
+      color: var(--texto-claro);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      width: 100%;
+    }
+
+    .opcion-btn:hover {
+      border-color: rgba(245, 197, 66, 0.6);
+      background: rgba(245, 197, 66, 0.08);
+    }
+
+    .opcion-btn.activa {
+      border-color: var(--dorado-acento);
+      background: rgba(245, 197, 66, 0.16);
+      box-shadow: 0 0 0 1px var(--dorado-acento);
+    }
+
+    .opcion-icono {
+      font-size: 1.5rem;
+      line-height: 1;
+      margin-top: 2px;
+    }
+
+    .opcion-contenido {
+      flex: 1;
+    }
+
+    .opcion-titulo {
+      font-weight: 700;
+      font-size: 0.98rem;
+      display: block;
+      color: #ffffff;
+    }
+
+    .opcion-desc {
+      font-size: 0.82rem;
+      color: var(--texto-suave);
+      display: block;
+      margin-top: 3px;
+    }
+
+    .opcion-precio {
+      display: inline-block;
+      margin-top: 6px;
+      background: rgba(245, 197, 66, 0.2);
+      color: var(--dorado-acento);
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    /* ==========================================================================
+       7. CAMPOS DE TEXTO Y ÁREA CREATIVA
+       ========================================================================== */
+    .campo-input,
+    .campo-textarea {
+      width: 100%;
+      background: rgba(18, 9, 32, 0.65);
+      border: 2px solid var(--morado-borde);
+      border-radius: 14px;
+      padding: 14px 16px;
+      color: #ffffff;
+      font-size: 0.96rem;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .campo-input::placeholder,
+    .campo-textarea::placeholder {
+      color: #8f7fa8;
+    }
+
+    .campo-input:focus,
+    .campo-textarea:focus {
+      border-color: var(--dorado-acento);
+    }
+
+    .campo-textarea {
+      min-height: 115px;
+      resize: vertical;
+    }
+
+    .chips-sugerencias {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .chip {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--morado-borde);
+      color: var(--texto-suave);
+      font-size: 0.78rem;
+      padding: 6px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .chip:hover {
+      border-color: var(--dorado-acento);
+      color: var(--dorado-acento);
+    }
+
+    /* ==========================================================================
+       8. RESUMEN FINAL DE PRODUCCIÓN Y COTIZACIÓN
+       ========================================================================== */
+    .ficha-resumen {
+      background: rgba(18, 9, 32, 0.7);
+      border: 1px solid var(--morado-borde);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 18px;
+    }
+
+    .ficha-fila {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 9px 0;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.12);
+      font-size: 0.88rem;
+    }
+
+    .ficha-fila:last-child {
+      border-bottom: none;
+    }
+
+    .ficha-clave {
+      color: var(--texto-suave);
+      font-weight: 600;
+      min-width: 115px;
+    }
+
+    .ficha-valor {
+      color: #ffffff;
+      font-weight: 700;
+      text-align: right;
+      word-break: break-word;
+    }
+
+    .caja-total {
+      background: linear-gradient(135deg, rgba(245, 197, 66, 0.18), rgba(245, 197, 66, 0.06));
+      border: 1.5px solid var(--dorado-acento);
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .caja-total-label {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--texto-claro);
+    }
+
+    .caja-total-sub {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--texto-suave);
+      font-weight: 400;
+    }
+
+    .caja-total-precio {
+      font-size: 1.45rem;
+      font-weight: 900;
+      color: var(--dorado-acento);
+    }
+
+    /* ==========================================================================
+       9. BOTONES DE NAVEGACIÓN Y WHATSAPP
+       ========================================================================== */
+    .navegacion-botones {
+      display: flex;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .btn-secundario {
+      background: transparent;
+      border: 1.5px solid var(--morado-borde);
+      color: var(--texto-suave);
+      padding: 14px 18px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-secundario:hover {
+      border-color: #ffffff;
+      color: #ffffff;
+    }
+
+    .btn-principal {
+      flex: 1;
+      background: var(--dorado-acento);
+      color: var(--morado-oscuro);
+      border: none;
+      padding: 14px 20px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 0.98rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 6px 18px rgba(245, 197, 66, 0.28);
+    }
+
+    .btn-principal:hover {
+      background: var(--dorado-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-principal:disabled {
+      opacity: 0.42;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .btn-whatsapp {
+      width: 100%;
+      background: var(--whatsapp-verde);
+      color: #0b2915;
+      border: none;
+      padding: 16px 20px;
+      border-radius: 14px;
+      font-weight: 900;
+      font-size: 1.02rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 8px 22px rgba(37, 211, 102, 0.35);
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-whatsapp:hover {
+      background: var(--whatsapp-hover);
+      transform: translateY(-1px);
+    }
+
+    .nota-privacidad {
+      text-align: center;
+      font-size: 0.76rem;
+      color: var(--texto-suave);
+      margin-top: 12px;
+    }
+
+    /* ==========================================================================
+       10. PIE DE PÁGINA OBLIGATORIO
+       ========================================================================== */
+    footer {
+      text-align: center;
+      padding: 18px 16px 24px;
+      font-size: 0.8rem;
+      color: var(--texto-suave);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CABECERA DE LA PRODUCTORA -->
+  <header>
+    <div class="badge-rec">
+      <span class="punto-rec"></span>
+      <span>REC · Barrancabermeja, Santander</span>
+    </div>
+    <h1>Vamos <span>Cultura</span> 🪀</h1>
+    <p class="eslogan">«La cultura nos une, las ideas nos mueven.»</p>
+  </header>
+
+  <!-- INDICADOR DE PROGRESO -->
+  <div class="progreso-contenedor">
+    <div class="progreso-info">
+      <span id="texto-paso">Escena 1 de 6</span>
+      <span id="porcentaje-paso">17%</span>
+    </div>
+    <div class="barra-fondo">
+      <div class="barra-relleno" id="barra-relleno"></div>
+    </div>
+  </div>
+
+  <!-- ESCENARIO PRINCIPAL DEL CUESTIONARIO (Una pregunta a la vez) -->
+  <main id="contenedor-cuestionario">
+    <!-- Las escenas se renderizan dinámicamente aquí -->
+  </main>
+
+  <!-- PIE DE PÁGINA INSTITUCIONAL -->
+  <footer>
+    Proyecto académico · Creación de Empresas · UNIPAZ 2026
+  </footer>
+
+  <script>
+    /* ==========================================================================
+       1. CONFIGURACIÓN DE VAMOS CULTURA (Número oficial de WhatsApp conectado)
+       ========================================================================== */
+    const EMPRESA = {
+      nombre: "Vamos Cultura",
+      ciudad: "Barrancabermeja, Santander",
+      whatsappNumero: "573104344957"
+    };
+
+    const SERVICIOS_CATALOGO = [
       {
-        "id": "materiales",
-        "nombre": "Materiales y recursos audiovisuales",
-        "valor": 900000,
-        "frecuencia": "por_unidad",
-        "tipo": "variable"
+        id: "sesion-foto",
+        icono: "📸",
+        titulo: "Sesión Fotográfica Artística o Comercial",
+        descripcion: "Retratos, book para artistas, cobertura fotográfica o catálogo de marca con edición profesional.",
+        precio: 600000
       },
       {
-        "id": "transporte",
-        "nombre": "Transporte por evento",
-        "valor": 50000,
-        "frecuencia": "por_unidad",
-        "tipo": "variable"
-      }
-    ],
-
-    "mod": [
-      {
-        "id": "equipo_produccion",
-        "nombre": "Equipo de producción audiovisual",
-        "cantidad": 4,
-        "valorPorPersona": 400000,
-        "frecuencia": "por_unidad",
-        "tipo": "variable",
-        "incluidoEnCostoPorProyecto": true
-      }
-    ],
-
-    "cif": [
-      {
-        "id": "edicion_mantenimiento",
-        "nombre": "Editores, mantenimiento y alquiler",
-        "valor": 500000,
-        "frecuencia": "mensual",
-        "tipo": "fijo"
+        id: "video-pub",
+        icono: "🎬",
+        titulo: "Video Publicitario o Videoclip",
+        descripcion: "Guion creativo, grabación en locaciones de Barrancabermeja, edición dinámica y colorización.",
+        precio: 1300000
       },
       {
-        "id": "almacenamiento",
-        "nombre": "Almacenamiento en la nube",
-        "valor": 60000,
-        "frecuencia": "mensual",
-        "tipo": "fijo"
-      }
-    ],
-
-    "gastos": [
-      {
-        "id": "publicidad",
-        "nombre": "Publicidad y promoción",
-        "valor": 600000,
-        "frecuencia": "mensual",
-        "tipo": "fijo"
+        id: "prod-integral",
+        icono: "🎥",
+        titulo: "Producción Audiovisual y Cobertura Integral",
+        descripcion: "Fotografía, grabación multicámara, edición de videos y creación de contenido audiovisual completo para eventos.",
+        precio: 3200000
       },
       {
-        "id": "diversos",
-        "nombre": "Gastos diversos",
-        "valor": 300000,
-        "frecuencia": "mensual",
-        "tipo": "fijo"
+        id: "evento-cultural",
+        icono: "🎭",
+        titulo: "Organización y Producción de Eventos Culturales",
+        descripcion: "Planeación, coordinación y producción de festivales, ferias, encuentros artísticos y actividades comunitarias.",
+        precio: 900000
       }
-    ]
-  },
+    ];
 
-  "nomina": {
-    "personaJuridica": true,
-    "empleados": [
-      {
-        "id": "administrador",
-        "cargo": "Administrador",
-        "salarioBaseMensual": 1750905,
-        "arl": "II",
-        "contratar": true,
-        "tipoContrato": "por_definir",
-        "costoTotalEmpresaMensual": null,
-        "estadoCalculo": "pendiente_de_validar"
+    /* ==========================================================================
+       2. ESTADO TEMPORAL EN MEMORIA (No guarda datos en navegador ni servidor)
+       ========================================================================== */
+    let pasoActual = 0;
+
+    const respuestas = {
+      perfil: "",
+      servicio: null,
+      objetivo: "",
+      inspiracion: "",
+      nombreContacto: ""
+    };
+
+    /* ==========================================================================
+       3. FORMATEADOR OFICIAL DE PESOS COLOMBIANOS ($ 1.500.000)
+       ========================================================================== */
+    function formatearCOP(valor) {
+      const numero = new Intl.NumberFormat("es-CO", {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+      }).format(valor);
+      return `$ ${numero}`;
+    }
+
+    /* ==========================================================================
+       4. DEFINICIÓN DE LAS 6 ESCENAS DEL CUESTIONARIO
+       ========================================================================== */
+    const totalPasos = 6;
+
+    function actualizarProgreso() {
+      const numeroEscena = pasoActual + 1;
+      const porcentaje = Math.round((numeroEscena / totalPasos) * 100);
+      document.getElementById("texto-paso").textContent =
+        pasoActual === totalPasos - 1
+          ? "Guion listo · Resumen final"
+          : `Escena ${numeroEscena} de ${totalPasos}`;
+      document.getElementById("porcentaje-paso").textContent = `${porcentaje}%`;
+      document.getElementById("barra-relleno").style.width = `${porcentaje}%`;
+    }
+
+    function renderizarEscena() {
+      actualizarProgreso();
+      const contenedor = document.getElementById("contenedor-cuestionario");
+
+      // ESCENA 1: PERFIL DEL CLIENTE
+      if (pasoActual === 0) {
+        const perfiles = [
+          {
+            icono: "🎤",
+            titulo: "Artista, Músico o Colectivo Cultural",
+            desc: "Quiero proyectar mi arte, lanzar un proyecto o documentar una presentación."
+          },
+          {
+            icono: "🚀",
+            titulo: "Emprendimiento o Empresa",
+            desc: "Busco piezas audiovisuales con identidad cultural para posicionar mi marca."
+          },
+          {
+            icono: "🤝",
+            titulo: "Organización Social, Institución o Comunidad",
+            desc: "Queremos realizar un evento cultural, festival o memoria audiovisual comunitaria."
+          }
+        ];
+
+        contenedor.innerHTML = `
+          <section class="escena-card">
+            <span class="paso-etiqueta">Toma 01 · Conozcámonos</span>
+            <h2 class="pregunta-titulo">¿Quién está detrás de esta idea?</h2>
+            <p class="pregunta-subtitulo">Cuéntanos tu perfil para adaptar el lenguaje visual y creativo de tu proyecto.</p>
+
+            <div class="grid-opciones">
+              ${perfiles.map(p => `
+                <button type="button" class="opcion-btn ${respuestas.perfil === p.titulo ? 'activa' : ''}"
+                  onclick="seleccionarPerfil('${p.titulo}')">
+                  <span class="opcion-icono">${p.icono}</span>
+                  <div class="opcion-contenido">
+                    <span class="opcion-titulo">${p.titulo}</span>
+                    <span class="opcion-desc">${p.desc}</span>
+                  </div>
+                </button>
+              `).join("")}
+            </div>
+
+            <div class="navegacion-botones">
+              <button type="button" class="btn-principal" ${!respuestas.perfil ? "disabled" : ""} onclick="irSiguiente()">
+                Continuar →
+              </button>
+            </div>
+          </section>
+        `;
       }
-    ],
-    "observacion": "El costo total del empleador debe incluir los conceptos laborales y aportes aplicables. No se calcula hasta validar los datos correspondientes."
-  },
 
-  "escenarios": {
-    "unidad": "proyectos_mensuales",
-    "pesimista": 2,
-    "base": 3,
-    "optimista": 4
-  },
+      // ESCENA 2: TIPO DE SERVICIO AUDIOVISUAL O CULTURAL
+      else if (pasoActual === 1) {
+        contenedor.innerHTML = `
+          <section class="escena-card">
+            <span class="paso-etiqueta">Toma 02 · Formato creativo</span>
+            <h2 class="pregunta-titulo">¿Qué tipo de producción necesitas?</h2>
+            <p class="pregunta-subtitulo">Selecciona el servicio que mejor se ajusta a lo que quieres comunicar hoy.</p>
 
-  "caja": {
-    "capitalInicial": 3000000,
-    "moneda": "COP",
-    "proyeccionMeses": 6,
-    "ventasProyectadas": [4, 4, 6, 6, 6, 7]
-  },
+            <div class="grid-opciones">
+              ${SERVICIOS_CATALOGO.map(s => `
+                <button type="button" class="opcion-btn ${respuestas.servicio && respuestas.servicio.id === s.id ? 'activa' : ''}"
+                  onclick="seleccionarServicio('${s.id}')">
+                  <span class="opcion-icono">${s.icono}</span>
+                  <div class="opcion-contenido">
+                    <span class="opcion-titulo">${s.titulo}</span>
+                    <span class="opcion-desc">${s.descripcion}</span>
+                    <span class="opcion-precio">${formatearCOP(s.precio)}</span>
+                  </div>
+                </button>
+              `).join("")}
+            </div>
 
-  "calculos": {
-    "estado": "provisional",
-    "costoMaterialesPorUnidad": 950000,
-    "costoManoObraPorUnidad": 1600000,
-    "costoVariablePorUnidad": 2550000,
-    "precioVentaPorUnidad": 3500000,
-    "margenContribucionPorUnidad": 950000,
-    "costosFijosMensualesSinNomina": 1460000,
-    "salarioBaseAdministrador": 1750905,
-    "costosFijosMensualesConSalarioBase": 3210905,
-    "puntoEquilibrioUnidades": 4,
-    "observacion": "Cálculos provisionales que incluyen el salario base del administrador, pero no las cargas adicionales de nómina, impuestos ni otros conceptos pendientes de validar."
-  },
+            <div class="navegacion-botones">
+              <button type="button" class="btn-secundario" onclick="irAnterior()">← Atrás</button>
+              <button type="button" class="btn-principal" ${!respuestas.servicio ? "disabled" : ""} onclick="irSiguiente()">
+                Continuar →
+              </button>
+            </div>
+          </section>
+        `;
+      }
 
-  "decision": {
-    "numeroClave": "6 eventos mensuales porque permiten generar ganancias.",
-    "accion30dias": "Realizar una campaña de promoción digital y presencial mediante Instagram, TikTok, Facebook y visitas a artistas y emprendimientos.",
-    "usoCriticoIA": "No se identificaron recomendaciones o cálculos de la IA que se quisieran cambiar durante el ejercicio."
-  }
-}
+      // ESCENA 3: OBJETIVO AL ADQUIRIR EL SERVICIO
+      else if (pasoActual === 2) {
+        const objetivos = [
+          {
+            icono: "🔥",
+            titulo: "Dar a conocer mi arte o lanzamiento",
+            desc: "Impactar en redes sociales, plataformas digitales y nuevos públicos."
+          },
+          {
+            icono: "📈",
+            titulo: "Atraer clientes y fortalecer mi marca",
+            desc: "Comunicar el valor humano y cultural detrás de mi emprendimiento."
+          },
+          {
+            icono: "🎞️",
+            titulo: "Registrar y vivir un evento inolvidable",
+            desc: "Cubrir un festival, feria o encuentro cultural con calidad cinematográfica."
+          },
+          {
+            icono: "💛",
+            titulo: "Transformar y conectar con la comunidad",
+            desc: "Visibilizar procesos sociales, identidad barranqueña y talento local."
+          }
+        ];
+
+        contenedor.innerHTML = `
+          <section class="escena-card">
+            <span class="paso-etiqueta">Toma 03 · El propósito</span>
+            <h2 class="pregunta-titulo">¿Qué objetivo quieres lograr con este proyecto?</h2>
+            <p class="pregunta-subtitulo">Para nosotros cada plano tiene un sentido. Dinos qué quieres provocar en tu audiencia.</p>
+
+            <div class="grid-opciones">
+              ${objetivos.map(o => `
+                <button type="button" class="opcion-btn ${respuestas.objetivo === o.titulo ? 'activa' : ''}"
+                  onclick="seleccionarObjetivo('${o.titulo}')">
+                  <span class="opcion-icono">${o.icono}</span>
+                  <div class="opcion-contenido">
+                    <span class="opcion-titulo">${o.titulo}</span>
+                    <span class="opcion-desc">${o.desc}</span>
+                  </div>
+                </button>
+              `).join("")}
+            </div>
+
+            <div class="navegacion-botones">
+              <button type="button" class="btn-secundario" onclick="irAnterior()">← Atrás</button>
+              <button type="button" class="btn-principal" ${!respuestas.objetivo ? "disabled" : ""} onclick="irSiguiente()">
+                Continuar →
+              </button>
+            </div>
+          </section>
+        `;
+      }
+
+      // ESCENA 4: IDEA DE INSPIRACIÓN
+      else if (pasoActual === 3) {
+        const ideasRapidas = [
+          "Estilo documental urbano y auténtico",
+          "Colores cálidos y energía ribereña",
+          "Estética cinematográfica nocturna",
+          "Dinámico y juvenil para Reels / TikTok"
+        ];
+
+        contenedor.innerHTML = `
+          <section class="escena-card">
+            <span class="paso-etiqueta">Toma 04 · Dirección de arte</span>
+            <h2 class="pregunta-titulo">¿Qué idea o inspiración tienes en mente?</h2>
+            <p class="pregunta-subtitulo">Descríbenos una referencia, una emoción, una locación en Barrancabermeja o elige una vibra:</p>
+
+            <textarea
+              id="input-inspiracion"
+              class="campo-textarea"
+              placeholder="Ej. Queremos grabar al atardecer cerca al río Magdalena con música en vivo y planos cercanos de la gente disfrutando..."
+              oninput="actualizarInspiracion(this.value)"
+            >${respuestas.inspiracion}</textarea>
+
+            <div class="chips-sugerencias">
+              ${ideasRapidas.map(idea => `
+                <button type="button" class="chip" onclick="agregarChipInspiracion('${idea}')">+ ${idea}</button>
+              `).join("")}
+            </div>
+
+            <div class="navegacion-botones">
+              <button type="button" class="btn-secundario" onclick="irAnterior()">← Atrás</button>
+              <button type="button" class="btn-principal" id="btn-next-insp" ${!respuestas.inspiracion.trim() ? "disabled" : ""} onclick="irSiguiente()">
+                Continuar →
+              </button>
+            </div>
+          </section>
+        `;
+      }
+
+      // ESCENA 5: NOMBRE DEL ARTISTA, EMPRESA O LÍDER DEL PROYECTO
+      else if (pasoActual === 4) {
+        contenedor.innerHTML = `
+          <section class="escena-card">
+            <span class="paso-etiqueta">Toma 05 · Créditos iniciales</span>
+            <h2 class="pregunta-titulo">¿Cómo se llama tu proyecto, empresa o agrupación?</h2>
+            <p class="pregunta-subtitulo">Así sabremos cómo saludarte cuando recibamos tu cotización en WhatsApp.</p>
+
+            <input
+              type="text"
+              id="input-nombre"
+              class="campo-input"
+              placeholder="Ej. Colectivo Tambora / Café del Puerto / Sofía Gómez"
+              value="${respuestas.nombreContacto}"
+              oninput="actualizarNombre(this.value)"
+            />
+
+            <div class="navegacion-botones">
+              <button type="button" class="btn-secundario" onclick="irAnterior()">← Atrás</button>
+              <button type="button" class="btn-principal" id="btn-next-nombre" ${!respuestas.nombreContacto.trim() ? "disabled" : ""} onclick="irSiguiente()">
+                Ver mi cotización →
+              </button>
+            </div>
+          </section>
+        `;
+      }
+
+      // ESCENA 6: RESUMEN DE PRODUCCIÓN, COTIZACIÓN Y CONFIRMACIÓN POR WHATSAPP
+      else if (pasoActual === 5) {
+        const urlWa = construirEnlaceWhatsApp();
+
+        contenedor.innerHTML = `
+          <section class="escena-card">
+            <span class="paso-etiqueta">¡Corte y queda! · Tu resumen creativo</span>
+            <h2 class="pregunta-titulo">Propuesta lista para rodar</h2>
+            <p class="pregunta-subtitulo">Revisa los detalles de lo que quieres crear con <strong>Vamos Cultura</strong>:</p>
+
+            <div class="ficha-resumen">
+              <div class="ficha-fila">
+                <span class="ficha-clave">Proyecto / Cliente:</span>
+                <span class="ficha-valor">${escaparHTML(respuestas.nombreContacto)}</span>
+              </div>
+              <div class="ficha-fila">
+                <span class="ficha-clave">Perfil:</span>
+                <span class="ficha-valor">${escaparHTML(respuestas.perfil)}</span>
+              </div>
+              <div class="ficha-fila">
+                <span class="ficha-clave">Servicio:</span>
+                <span class="ficha-valor">${escaparHTML(respuestas.servicio.titulo)}</span>
+              </div>
+              <div class="ficha-fila">
+                <span class="ficha-clave">Incluye:</span>
+                <span class="ficha-valor">${escaparHTML(respuestas.servicio.descripcion)}</span>
+              </div>
+              <div class="ficha-fila">
+                <span class="ficha-clave">Objetivo:</span>
+                <span class="ficha-valor">${escaparHTML(respuestas.objetivo)}</span>
+              </div>
+              <div class="ficha-fila">
+                <span class="ficha-clave">Inspiración:</span>
+                <span class="ficha-valor">«${escaparHTML(respuestas.inspiracion)}»</span>
+              </div>
+            </div>
+
+            <div class="caja-total">
+              <div>
+                <span class="caja-total-label">Inversión estimada</span>
+                <span class="caja-total-sub">Tarifa en pesos colombianos (COP)</span>
+              </div>
+              <span class="caja-total-precio">${formatearCOP(respuestas.servicio.precio)}</span>
+            </div>
+
+            <a href="${urlWa}" target="_blank" rel="noopener noreferrer" class="btn-whatsapp" onclick="abrirWhatsApp(event)">
+              <span>📲 Confirmar servicio por WhatsApp</span>
+            </a>
+
+            <div class="navegacion-botones" style="margin-top: 12px;">
+              <button type="button" class="btn-secundario" style="width: 100%;" onclick="irAnterior()">
+                ← Editar alguna respuesta
+              </button>
+            </div>
+
+            <p class="nota-privacidad">
+              🔒 No guardamos tus datos ni pedimos pagos o contraseñas aquí.
+            </p>
+          </section>
+        `;
+      }
+    }
+
+    /* ==========================================================================
+       5. MANEJADORES DE INTERACCIÓN Y NAVEGACIÓN
+       ========================================================================== */
+    function seleccionarPerfil(perfil) {
+      respuestas.perfil = perfil;
+      renderizarEscena();
+    }
+
+    function seleccionarServicio(idServicio) {
+      respuestas.servicio = SERVICIOS_CATALOGO.find(s => s.id === idServicio) || null;
+      renderizarEscena();
+    }
+
+    function seleccionarObjetivo(objetivo) {
+      respuestas.objetivo = objetivo;
+      renderizarEscena();
+    }
+
+    function actualizarInspiracion(texto) {
+      respuestas.inspiracion = texto;
+      const btn = document.getElementById("btn-next-insp");
+      if (btn) btn.disabled = !texto.trim();
+    }
+
+    function agregarChipInspiracion(chipTexto) {
+      const actual = respuestas.inspiracion.trim();
+      respuestas.inspiracion = actual ? `${actual}. ${chipTexto}` : chipTexto;
+      renderizarEscena();
+    }
+
+    function actualizarNombre(texto) {
+      respuestas.nombreContacto = texto;
+      const btn = document.getElementById("btn-next-nombre");
+      if (btn) btn.disabled = !texto.trim();
+    }
+
+    function irSiguiente() {
+      if (pasoActual < totalPasos - 1) {
+        pasoActual++;
+        renderizarEscena();
+      }
+    }
+
+    function irAnterior() {
+      if (pasoActual > 0) {
+        pasoActual--;
+        renderizarEscena();
+      }
+    }
+
+    function escaparHTML(cadena) {
+      const div = document.createElement("div");
+      div.textContent = cadena;
+      return div.innerHTML;
+    }
+
+    /* ==========================================================================
+       6. GENERADOR DEL MENSAJE Y ENLACE OFICIAL DE WHATSAPP (+57 310 434 4957)
+       ========================================================================== */
+    function construirEnlaceWhatsApp() {
+      if (!respuestas.servicio) return `https://wa.me/${EMPRESA.whatsappNumero}`;
+
+      const precioFormateado = formatearCOP(respuestas.servicio.precio);
+
+      const mensaje = [
+        `¡Hola *${EMPRESA.nombre}* 🪀! Quiero confirmar una solicitud de servicio desde su cotizador web:`,
+        ``,
+        `🎬 *Proyecto / Cliente:* ${respuestas.nombreContacto.trim()}`,
+        `🎭 *Tipo de cliente:* ${respuestas.perfil}`,
+        `🎥 *Servicio requerido:* ${respuestas.servicio.titulo}`,
+        `📋 *Especificaciones:* ${respuestas.servicio.descripcion}`,
+        `🎯 *Objetivo del proyecto:* ${respuestas.objetivo}`,
+        `✨ *Idea / Inspiración:* ${respuestas.inspiracion.trim()}`,
+        `💰 *Valor cotizado:* ${precioFormateado}`,
+        `📍 *Ciudad:* ${EMPRESA.ciudad}`,
+        ``,
+        `Quedo atento(a) para coordinar nuestra producción.`
+      ].join("\n");
+
+      return `https://wa.me/${EMPRESA.whatsappNumero}?text=${encodeURIComponent(mensaje)}`;
+    }
+
+    // Respaldo de apertura directa para móviles y navegadores de escritorio
+    function abrirWhatsApp(evento) {
+      evento.preventDefault();
+      const urlDestino = construirEnlaceWhatsApp();
+      window.open(urlDestino, "_blank", "noopener,noreferrer");
+    }
+
+    // Iniciar la primera escena al cargar la página
+    renderizarEscena();
+  </script>
+</body>
+</html>
