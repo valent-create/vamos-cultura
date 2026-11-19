@@ -3,28 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vamos Cultura 🪀 | Productora Audiovisual & Eventos Culturales</title>
+  <title>Vamos Cultura 🪀 | Productora Audiovisual & Arte Urbano</title>
   <style>
     /* ==========================================================================
-       1. IDENTIDAD VISUAL — VAMOS CULTURA (Estética Productora & Arte)
+       1. PALETA EDITORIAL & COLLAGE CULTURAL (Inspirada en la referencia visual)
        ========================================================================== */
     :root {
       --morado-base: #33204F;
-      --morado-oscuro: #1d1030;
-      --morado-tarjeta: #281840;
-      --morado-borde: #47306b;
-      --dorado-acento: #F5C542;
-      --dorado-hover: #ffcf4d;
+      --morado-oscuro: #180d29;
+      --morado-tarjeta: #26163d;
+      --morado-borde: #51357a;
+      --dorado-halo: #F5C542;
+      --dorado-hover: #ffd45c;
+      --rojo-collage: #E63926;
+      --azul-cobalto: #2B6CB0;
+      --crema-papel: #F7F2E7;
       --whatsapp-verde: #25D366;
       --whatsapp-hover: #1ebe5d;
-      --texto-claro: #f8f6fc;
-      --texto-suave: #c4b8d9;
-      --radio-tarjeta: 20px;
-      --sombra-cine: 0 18px 40px rgba(0, 0, 0, 0.45);
+      --texto-claro: #FAF7FF;
+      --texto-suave: #CBBEE0;
+      --sombra-collage: 0 20px 45px rgba(0, 0, 0, 0.55);
     }
 
     /* ==========================================================================
-       2. RESET Y DISEÑO MOBILE-FIRST
+       2. RESET, TEXTURA DE GRANO Y FONDO GEOMÉTRICO ARTÍSTICO
        ========================================================================== */
     * {
       box-sizing: border-box;
@@ -34,7 +36,12 @@
     }
 
     body {
-      background: radial-gradient(circle at top right, #45296e 0%, var(--morado-base) 42%, var(--morado-oscuro) 100%);
+      background-color: var(--morado-oscuro);
+      background-image:
+        radial-gradient(circle at 85% 12%, rgba(245, 197, 66, 0.22) 0%, transparent 28%),
+        radial-gradient(circle at 12% 25%, rgba(230, 57, 38, 0.22) 0%, transparent 32%),
+        radial-gradient(circle at 80% 82%, rgba(43, 108, 176, 0.25) 0%, transparent 35%),
+        linear-gradient(160deg, var(--morado-base) 0%, #23133b 50%, var(--morado-oscuro) 100%);
       color: var(--texto-claro);
       min-height: 100vh;
       display: flex;
@@ -42,15 +49,69 @@
       justify-content: space-between;
       line-height: 1.5;
       overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Bloques geométricos tipo collage artístico en el fondo (CSS puro) */
+    .collage-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .collage-halo {
+      position: absolute;
+      top: -45px;
+      right: -35px;
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245, 197, 66, 0.32) 0%, rgba(245, 197, 66, 0.05) 70%);
+      border: 2px dashed rgba(245, 197, 66, 0.35);
+    }
+
+    .collage-franja-roja {
+      position: absolute;
+      top: 18%;
+      left: -30px;
+      width: 95px;
+      height: 220px;
+      background: linear-gradient(180deg, rgba(230, 57, 38, 0.24), rgba(245, 197, 66, 0.14));
+      transform: rotate(-12deg);
+      border-right: 3px solid rgba(245, 197, 66, 0.35);
+    }
+
+    .collage-mosaico {
+      position: absolute;
+      bottom: 8%;
+      right: 12px;
+      display: grid;
+      grid-template-columns: repeat(3, 16px);
+      gap: 4px;
+      opacity: 0.32;
+    }
+
+    .collage-mosaico span:nth-child(1) { background: var(--rojo-collage); height: 16px; }
+    .collage-mosaico span:nth-child(2) { background: var(--dorado-halo); height: 16px; }
+    .collage-mosaico span:nth-child(3) { background: transparent; height: 16px; }
+    .collage-mosaico span:nth-child(4) { background: var(--azul-cobalto); height: 16px; }
+    .collage-mosaico span:nth-child(5) { background: var(--crema-papel); height: 16px; }
+    .collage-mosaico span:nth-child(6) { background: var(--rojo-collage); height: 16px; }
+
+    header, .progreso-contenedor, main, footer {
+      position: relative;
+      z-index: 1;
     }
 
     /* ==========================================================================
-       3. CABECERA DE PRODUCTORA (Con estética de visor de cámara / REC)
+       3. CABECERA CON HALO DORADO Y ESTÉTICA DE CINE & ARTE URBANO
        ========================================================================== */
     header {
-      padding: 22px 20px 12px;
+      padding: 24px 20px 10px;
       text-align: center;
-      max-width: 560px;
+      max-width: 580px;
       width: 100%;
       margin: 0 auto;
     }
@@ -59,56 +120,79 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(245, 197, 66, 0.14);
-      border: 1px solid rgba(245, 197, 66, 0.4);
-      color: var(--dorado-acento);
+      background: rgba(24, 13, 41, 0.78);
+      border: 1.5px solid var(--dorado-halo);
+      color: var(--dorado-halo);
       padding: 5px 14px;
-      border-radius: 50px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 1px;
+      border-radius: 6px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
       margin-bottom: 12px;
+      box-shadow: 3px 3px 0px var(--rojo-collage);
     }
 
     .punto-rec {
       width: 8px;
       height: 8px;
-      background-color: #ff4d4d;
+      background-color: var(--rojo-collage);
       border-radius: 50%;
-      animation: parpadeo 1.4s infinite ease-in-out;
+      animation: parpadeo 1.3s infinite ease-in-out;
     }
 
     @keyframes parpadeo {
       0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.3; transform: scale(0.85); }
+      50% { opacity: 0.25; transform: scale(0.8); }
+    }
+
+    .marca-titulo-wrap {
+      display: inline-block;
+      position: relative;
+      padding: 4px 12px;
+    }
+
+    /* Halo dorado detrás del título inspirando la estética artística */
+    .marca-titulo-wrap::before {
+      content: "";
+      position: absolute;
+      top: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245, 197, 66, 0.42) 0%, rgba(245, 197, 66, 0) 72%);
+      z-index: -1;
     }
 
     header h1 {
-      font-size: 1.75rem;
+      font-size: 1.9rem;
       font-weight: 900;
-      letter-spacing: -0.5px;
+      letter-spacing: -0.6px;
       color: #ffffff;
+      text-shadow: 0 3px 14px rgba(0, 0, 0, 0.45);
     }
 
     header h1 span {
-      color: var(--dorado-acento);
+      color: var(--dorado-halo);
     }
 
     .eslogan {
       font-size: 0.92rem;
-      color: var(--texto-suave);
+      color: var(--crema-papel);
       margin-top: 4px;
       font-style: italic;
+      opacity: 0.9;
     }
 
     /* ==========================================================================
-       4. BARRA DE PROGRESO CINEMATOGRÁFICA
+       4. BARRA DE PROGRESO MULTICOLOR (Collage Ribbon)
        ========================================================================== */
     .progreso-contenedor {
-      max-width: 560px;
+      max-width: 580px;
       width: 100%;
-      margin: 14px auto 0;
+      margin: 12px auto 0;
       padding: 0 20px;
     }
 
@@ -116,32 +200,33 @@
       display: flex;
       justify-content: space-between;
       font-size: 0.78rem;
-      color: var(--texto-suave);
+      color: var(--dorado-halo);
       margin-bottom: 6px;
-      font-weight: 600;
+      font-weight: 700;
+      letter-spacing: 0.4px;
     }
 
     .barra-fondo {
       width: 100%;
-      height: 6px;
+      height: 8px;
       background: rgba(255, 255, 255, 0.12);
-      border-radius: 10px;
+      border-radius: 4px;
       overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.15);
     }
 
     .barra-relleno {
       height: 100%;
       width: 16.6%;
-      background: linear-gradient(90deg, var(--dorado-acento), #ffe082);
-      border-radius: 10px;
-      transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      background: linear-gradient(90deg, var(--rojo-collage) 0%, var(--dorado-halo) 55%, #38bdf8 100%);
+      transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     /* ==========================================================================
-       5. CONTENEDOR DEL CUESTIONARIO (Una pregunta a la vez)
+       5. TARJETA PRINCIPAL DE ESCENA (Estilo Recorte Editorial & Visor)
        ========================================================================== */
     main {
-      max-width: 560px;
+      max-width: 580px;
       width: 100%;
       margin: 18px auto;
       padding: 0 18px;
@@ -152,44 +237,39 @@
 
     .escena-card {
       width: 100%;
-      background: var(--morado-tarjeta);
-      border: 1px solid var(--morado-borde);
-      border-radius: var(--radio-tarjeta);
+      background: linear-gradient(165deg, rgba(44, 26, 71, 0.96) 0%, rgba(28, 15, 48, 0.98) 100%);
+      border: 2px solid var(--morado-borde);
+      border-radius: 18px;
       padding: 26px 22px;
-      box-shadow: var(--sombra-cine);
+      box-shadow: var(--sombra-collage), 6px 6px 0px rgba(245, 197, 66, 0.25);
       position: relative;
       animation: entrarEscena 0.38s ease forwards;
     }
 
-    .escena-card::before,
-    .escena-card::after {
-      content: "";
+    /* Cinta decorativa superior tipo cinta adhesiva de estudio / collage */
+    .cinta-estudio {
       position: absolute;
-      width: 14px;
-      height: 14px;
-      border-color: var(--dorado-acento);
-      border-style: solid;
-      opacity: 0.55;
-      pointer-events: none;
-    }
-    .escena-card::before {
-      top: 12px;
-      left: 12px;
-      border-width: 2px 0 0 2px;
-    }
-    .escena-card::after {
-      bottom: 12px;
-      right: 12px;
-      border-width: 0 2px 2px 0;
+      top: -11px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-1.5deg);
+      background: var(--dorado-halo);
+      color: var(--morado-oscuro);
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      padding: 2px 14px;
+      text-transform: uppercase;
+      border-radius: 3px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.35);
     }
 
     @keyframes entrarEscena {
-      from { opacity: 0; transform: translateY(14px); }
-      to { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; transform: translateY(14px) scale(0.99); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     .paso-etiqueta {
-      color: var(--dorado-acento);
+      color: var(--dorado-halo);
       font-size: 0.78rem;
       font-weight: 800;
       text-transform: uppercase;
@@ -199,9 +279,9 @@
     }
 
     .pregunta-titulo {
-      font-size: 1.32rem;
-      font-weight: 800;
-      line-height: 1.28;
+      font-size: 1.35rem;
+      font-weight: 900;
+      line-height: 1.25;
       margin-bottom: 8px;
       color: #ffffff;
     }
@@ -209,11 +289,11 @@
     .pregunta-subtitulo {
       font-size: 0.88rem;
       color: var(--texto-suave);
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     /* ==========================================================================
-       6. TARJETAS DE OPCIÓN INTERACTIVAS
+       6. OPCIONES INTERACTIVAS Y SELECCIÓN MÚLTIPLE DE SERVICIOS
        ========================================================================== */
     .grid-opciones {
       display: flex;
@@ -225,30 +305,32 @@
       background: rgba(255, 255, 255, 0.04);
       border: 2px solid var(--morado-borde);
       border-radius: 14px;
-      padding: 15px 16px;
+      padding: 14px 15px;
       text-align: left;
       color: var(--texto-claro);
       cursor: pointer;
       transition: all 0.2s ease;
       display: flex;
       align-items: flex-start;
-      gap: 14px;
+      gap: 13px;
       width: 100%;
+      position: relative;
     }
 
     .opcion-btn:hover {
-      border-color: rgba(245, 197, 66, 0.6);
+      border-color: rgba(245, 197, 66, 0.7);
       background: rgba(245, 197, 66, 0.08);
+      transform: translateX(2px);
     }
 
     .opcion-btn.activa {
-      border-color: var(--dorado-acento);
-      background: rgba(245, 197, 66, 0.16);
-      box-shadow: 0 0 0 1px var(--dorado-acento);
+      border-color: var(--dorado-halo);
+      background: linear-gradient(135deg, rgba(245, 197, 66, 0.2), rgba(230, 57, 38, 0.12));
+      box-shadow: 4px 4px 0px var(--dorado-halo);
     }
 
     .opcion-icono {
-      font-size: 1.5rem;
+      font-size: 1.55rem;
       line-height: 1;
       margin-top: 2px;
     }
@@ -258,37 +340,90 @@
     }
 
     .opcion-titulo {
-      font-weight: 700;
-      font-size: 0.98rem;
+      font-weight: 800;
+      font-size: 0.97rem;
       display: block;
       color: #ffffff;
     }
 
     .opcion-desc {
-      font-size: 0.82rem;
+      font-size: 0.81rem;
       color: var(--texto-suave);
       display: block;
       margin-top: 3px;
     }
 
+    .opcion-pie {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+      gap: 8px;
+    }
+
     .opcion-precio {
       display: inline-block;
-      margin-top: 6px;
-      background: rgba(245, 197, 66, 0.2);
-      color: var(--dorado-acento);
+      background: rgba(245, 197, 66, 0.22);
+      color: var(--dorado-halo);
       font-weight: 800;
       font-size: 0.85rem;
       padding: 3px 10px;
       border-radius: 6px;
+      border: 1px solid rgba(245, 197, 66, 0.4);
+    }
+
+    .check-pill {
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--texto-suave);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .opcion-btn.activa .check-pill {
+      background: var(--dorado-halo);
+      color: var(--morado-oscuro);
+      border-color: var(--dorado-halo);
+    }
+
+    /* Barra flotante de subtotal acumulado en la escena de servicios */
+    .barra-subtotal-servicios {
+      margin-top: 16px;
+      background: rgba(24, 13, 41, 0.85);
+      border: 1.5px solid var(--dorado-halo);
+      border-radius: 12px;
+      padding: 12px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .subtotal-texto {
+      font-size: 0.82rem;
+      color: var(--crema-papel);
+    }
+
+    .subtotal-texto strong {
+      color: var(--dorado-halo);
+      display: block;
+      font-size: 0.9rem;
+    }
+
+    .subtotal-monto {
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: var(--dorado-halo);
     }
 
     /* ==========================================================================
-       7. CAMPOS DE TEXTO Y ÁREA CREATIVA
+       7. CAMPOS DE TEXTO Y CHIPS DE INSPIRACIÓN
        ========================================================================== */
     .campo-input,
     .campo-textarea {
       width: 100%;
-      background: rgba(18, 9, 32, 0.65);
+      background: rgba(18, 9, 32, 0.78);
       border: 2px solid var(--morado-borde);
       border-radius: 14px;
       padding: 14px 16px;
@@ -300,12 +435,12 @@
 
     .campo-input::placeholder,
     .campo-textarea::placeholder {
-      color: #8f7fa8;
+      color: #9382ad;
     }
 
     .campo-input:focus,
     .campo-textarea:focus {
-      border-color: var(--dorado-acento);
+      border-color: var(--dorado-halo);
     }
 
     .campo-textarea {
@@ -323,7 +458,7 @@
     .chip {
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid var(--morado-borde);
-      color: var(--texto-suave);
+      color: var(--crema-papel);
       font-size: 0.78rem;
       padding: 6px 12px;
       border-radius: 20px;
@@ -332,19 +467,20 @@
     }
 
     .chip:hover {
-      border-color: var(--dorado-acento);
-      color: var(--dorado-acento);
+      border-color: var(--dorado-halo);
+      background: rgba(245, 197, 66, 0.16);
+      color: var(--dorado-halo);
     }
 
     /* ==========================================================================
        8. RESUMEN FINAL DE PRODUCCIÓN Y COTIZACIÓN
        ========================================================================== */
     .ficha-resumen {
-      background: rgba(18, 9, 32, 0.7);
-      border: 1px solid var(--morado-borde);
+      background: rgba(18, 9, 32, 0.78);
+      border: 1.5px solid var(--morado-borde);
       border-radius: 14px;
       padding: 16px;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .ficha-fila {
@@ -353,8 +489,8 @@
       align-items: flex-start;
       gap: 12px;
       padding: 9px 0;
-      border-bottom: 1px dashed rgba(255, 255, 255, 0.12);
-      font-size: 0.88rem;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.14);
+      font-size: 0.87rem;
     }
 
     .ficha-fila:last-child {
@@ -364,7 +500,7 @@
     .ficha-clave {
       color: var(--texto-suave);
       font-weight: 600;
-      min-width: 115px;
+      min-width: 105px;
     }
 
     .ficha-valor {
@@ -374,34 +510,52 @@
       word-break: break-word;
     }
 
+    .lista-servicios-resumen {
+      list-style: none;
+      text-align: right;
+    }
+
+    .lista-servicios-resumen li {
+      margin-bottom: 5px;
+      line-height: 1.35;
+    }
+
+    .lista-servicios-resumen li span.tag-precio {
+      color: var(--dorado-halo);
+      font-weight: 800;
+      font-size: 0.82rem;
+      display: block;
+    }
+
     .caja-total {
-      background: linear-gradient(135deg, rgba(245, 197, 66, 0.18), rgba(245, 197, 66, 0.06));
-      border: 1.5px solid var(--dorado-acento);
+      background: linear-gradient(135deg, rgba(230, 57, 38, 0.22), rgba(245, 197, 66, 0.22));
+      border: 2px solid var(--dorado-halo);
       border-radius: 14px;
       padding: 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 18px;
+      box-shadow: 4px 4px 0px rgba(230, 57, 38, 0.45);
     }
 
     .caja-total-label {
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--texto-claro);
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: #ffffff;
     }
 
     .caja-total-sub {
       display: block;
       font-size: 0.75rem;
-      color: var(--texto-suave);
+      color: var(--crema-papel);
       font-weight: 400;
     }
 
     .caja-total-precio {
-      font-size: 1.45rem;
+      font-size: 1.5rem;
       font-weight: 900;
-      color: var(--dorado-acento);
+      color: var(--dorado-halo);
     }
 
     /* ==========================================================================
@@ -410,7 +564,7 @@
     .navegacion-botones {
       display: flex;
       gap: 12px;
-      margin-top: 22px;
+      margin-top: 20px;
     }
 
     .btn-secundario {
@@ -432,25 +586,25 @@
 
     .btn-principal {
       flex: 1;
-      background: var(--dorado-acento);
+      background: var(--dorado-halo);
       color: var(--morado-oscuro);
       border: none;
       padding: 14px 20px;
       border-radius: 12px;
-      font-weight: 800;
+      font-weight: 900;
       font-size: 0.98rem;
       cursor: pointer;
       transition: all 0.2s ease;
-      box-shadow: 0 6px 18px rgba(245, 197, 66, 0.28);
+      box-shadow: 4px 4px 0px var(--rojo-collage);
     }
 
     .btn-principal:hover {
       background: var(--dorado-hover);
-      transform: translateY(-1px);
+      transform: translate(-1px, -1px);
     }
 
     .btn-principal:disabled {
-      opacity: 0.42;
+      opacity: 0.38;
       cursor: not-allowed;
       transform: none;
       box-shadow: none;
@@ -459,25 +613,25 @@
     .btn-whatsapp {
       width: 100%;
       background: var(--whatsapp-verde);
-      color: #0b2915;
-      border: none;
+      color: #072410;
+      border: 2px solid #ffffff;
       padding: 16px 20px;
       border-radius: 14px;
       font-weight: 900;
-      font-size: 1.02rem;
+      font-size: 1.03rem;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      box-shadow: 0 8px 22px rgba(37, 211, 102, 0.35);
+      box-shadow: 0 10px 24px rgba(37, 211, 102, 0.38);
       transition: all 0.2s ease;
       text-decoration: none;
     }
 
     .btn-whatsapp:hover {
       background: var(--whatsapp-hover);
-      transform: translateY(-1px);
+      transform: translateY(-2px);
     }
 
     .nota-privacidad {
@@ -495,11 +649,21 @@
       padding: 18px 16px 24px;
       font-size: 0.8rem;
       color: var(--texto-suave);
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
   </style>
 </head>
 <body>
+
+  <!-- ELEMENTOS VISUALES DE COLLAGE ARTÍSTICO EN EL FONDO -->
+  <div class="collage-bg" aria-hidden="true">
+    <div class="collage-halo"></div>
+    <div class="collage-franja-roja"></div>
+    <div class="collage-mosaico">
+      <span></span><span></span><span></span>
+      <span></span><span></span><span></span>
+    </div>
+  </div>
 
   <!-- CABECERA DE LA PRODUCTORA -->
   <header>
@@ -507,7 +671,9 @@
       <span class="punto-rec"></span>
       <span>REC · Barrancabermeja, Santander</span>
     </div>
-    <h1>Vamos <span>Cultura</span> 🪀</h1>
+    <div class="marca-titulo-wrap">
+      <h1>Vamos <span>Cultura</span> 🪀</h1>
+    </div>
     <p class="eslogan">«La cultura nos une, las ideas nos mueven.»</p>
   </header>
 
@@ -522,7 +688,7 @@
     </div>
   </div>
 
-  <!-- ESCENARIO PRINCIPAL DEL CUESTIONARIO (Una pregunta a la vez) -->
+  <!-- ESCENARIO PRINCIPAL DEL CUESTIONARIO -->
   <main id="contenedor-cuestionario">
     <!-- Las escenas se renderizan dinámicamente aquí -->
   </main>
@@ -534,7 +700,7 @@
 
   <script>
     /* ==========================================================================
-       1. CONFIGURACIÓN DE VAMOS CULTURA (Número oficial de WhatsApp conectado)
+       1. CONFIGURACIÓN DE VAMOS CULTURA (WhatsApp oficial +57 310 434 4957)
        ========================================================================== */
     const EMPRESA = {
       nombre: "Vamos Cultura",
@@ -574,20 +740,20 @@
     ];
 
     /* ==========================================================================
-       2. ESTADO TEMPORAL EN MEMORIA (No guarda datos en navegador ni servidor)
+       2. ESTADO TEMPORAL EN MEMORIA (Soporta múltiples servicios seleccionados)
        ========================================================================== */
     let pasoActual = 0;
 
     const respuestas = {
       perfil: "",
-      servicio: null,
+      serviciosSeleccionados: [], // Array de IDs para permitir seleccionar 1 o varios servicios
       objetivo: "",
       inspiracion: "",
       nombreContacto: ""
     };
 
     /* ==========================================================================
-       3. FORMATEADOR OFICIAL DE PESOS COLOMBIANOS ($ 1.500.000)
+       3. UTILIDADES DE CÁLCULO Y FORMATO COP ($ 1.500.000)
        ========================================================================== */
     function formatearCOP(valor) {
       const numero = new Intl.NumberFormat("es-CO", {
@@ -597,8 +763,16 @@
       return `$ ${numero}`;
     }
 
+    function obtenerObjetosServiciosSeleccionados() {
+      return SERVICIOS_CATALOGO.filter(s => respuestas.serviciosSeleccionados.includes(s.id));
+    }
+
+    function calcularTotalCotizacion() {
+      return obtenerObjetosServiciosSeleccionados().reduce((acum, item) => acum + item.precio, 0);
+    }
+
     /* ==========================================================================
-       4. DEFINICIÓN DE LAS 6 ESCENAS DEL CUESTIONARIO
+       4. RENDERIZADO DE LAS 6 ESCENAS DEL CUESTIONARIO
        ========================================================================== */
     const totalPasos = 6;
 
@@ -607,7 +781,7 @@
       const porcentaje = Math.round((numeroEscena / totalPasos) * 100);
       document.getElementById("texto-paso").textContent =
         pasoActual === totalPasos - 1
-          ? "Guion listo · Resumen final"
+          ? "Guion listo · Resumen creativo"
           : `Escena ${numeroEscena} de ${totalPasos}`;
       document.getElementById("porcentaje-paso").textContent = `${porcentaje}%`;
       document.getElementById("barra-relleno").style.width = `${porcentaje}%`;
@@ -639,9 +813,10 @@
 
         contenedor.innerHTML = `
           <section class="escena-card">
+            <span class="cinta-estudio">Estudio Creativo</span>
             <span class="paso-etiqueta">Toma 01 · Conozcámonos</span>
             <h2 class="pregunta-titulo">¿Quién está detrás de esta idea?</h2>
-            <p class="pregunta-subtitulo">Cuéntanos tu perfil para adaptar el lenguaje visual y creativo de tu proyecto.</p>
+            <p class="pregunta-subtitulo">Cuéntanos tu perfil para adaptar el lenguaje visual y narrativo de tu proyecto.</p>
 
             <div class="grid-opciones">
               ${perfiles.map(p => `
@@ -665,31 +840,49 @@
         `;
       }
 
-      // ESCENA 2: TIPO DE SERVICIO AUDIOVISUAL O CULTURAL
+      // ESCENA 2: SELECCIÓN MÚLTIPLE DE SERVICIOS
       else if (pasoActual === 1) {
+        const seleccionados = obtenerObjetosServiciosSeleccionados();
+        const subtotal = calcularTotalCotizacion();
+
         contenedor.innerHTML = `
           <section class="escena-card">
-            <span class="paso-etiqueta">Toma 02 · Formato creativo</span>
-            <h2 class="pregunta-titulo">¿Qué tipo de producción necesitas?</h2>
-            <p class="pregunta-subtitulo">Selecciona el servicio que mejor se ajusta a lo que quieres comunicar hoy.</p>
+            <span class="cinta-estudio">Arma tu paquete</span>
+            <span class="paso-etiqueta">Toma 02 · Selección múltiple</span>
+            <h2 class="pregunta-titulo">¿Qué servicios quieres combinar?</h2>
+            <p class="pregunta-subtitulo">Puedes elegir <strong>uno o varios servicios</strong> para armar la producción a tu medida.</p>
 
             <div class="grid-opciones">
-              ${SERVICIOS_CATALOGO.map(s => `
-                <button type="button" class="opcion-btn ${respuestas.servicio && respuestas.servicio.id === s.id ? 'activa' : ''}"
-                  onclick="seleccionarServicio('${s.id}')">
-                  <span class="opcion-icono">${s.icono}</span>
-                  <div class="opcion-contenido">
-                    <span class="opcion-titulo">${s.titulo}</span>
-                    <span class="opcion-desc">${s.descripcion}</span>
-                    <span class="opcion-precio">${formatearCOP(s.precio)}</span>
-                  </div>
-                </button>
-              `).join("")}
+              ${SERVICIOS_CATALOGO.map(s => {
+                const estaActivo = respuestas.serviciosSeleccionados.includes(s.id);
+                return `
+                  <button type="button" class="opcion-btn ${estaActivo ? 'activa' : ''}"
+                    onclick="alternarServicio('${s.id}')">
+                    <span class="opcion-icono">${s.icono}</span>
+                    <div class="opcion-contenido">
+                      <span class="opcion-titulo">${s.titulo}</span>
+                      <span class="opcion-desc">${s.descripcion}</span>
+                      <div class="opcion-pie">
+                        <span class="opcion-precio">${formatearCOP(s.precio)}</span>
+                        <span class="check-pill">${estaActivo ? '✓ Agregado' : '+ Agregar'}</span>
+                      </div>
+                    </div>
+                  </button>
+                `;
+              }).join("")}
+            </div>
+
+            <div class="barra-subtotal-servicios">
+              <div class="subtotal-texto">
+                <strong>${seleccionados.length} ${seleccionados.length === 1 ? 'servicio seleccionado' : 'servicios seleccionados'}</strong>
+                <span>Suma estimada en tiempo real</span>
+              </div>
+              <span class="subtotal-monto">${formatearCOP(subtotal)}</span>
             </div>
 
             <div class="navegacion-botones">
               <button type="button" class="btn-secundario" onclick="irAnterior()">← Atrás</button>
-              <button type="button" class="btn-principal" ${!respuestas.servicio ? "disabled" : ""} onclick="irSiguiente()">
+              <button type="button" class="btn-principal" ${seleccionados.length === 0 ? "disabled" : ""} onclick="irSiguiente()">
                 Continuar →
               </button>
             </div>
@@ -724,9 +917,10 @@
 
         contenedor.innerHTML = `
           <section class="escena-card">
+            <span class="cinta-estudio">El Mensaje</span>
             <span class="paso-etiqueta">Toma 03 · El propósito</span>
-            <h2 class="pregunta-titulo">¿Qué objetivo quieres lograr con este proyecto?</h2>
-            <p class="pregunta-subtitulo">Para nosotros cada plano tiene un sentido. Dinos qué quieres provocar en tu audiencia.</p>
+            <h2 class="pregunta-titulo">¿Qué objetivo quieres lograr con esta producción?</h2>
+            <p class="pregunta-subtitulo">Para nosotros cada plano comunica arte. Dinos qué quieres provocar en tu audiencia.</p>
 
             <div class="grid-opciones">
               ${objetivos.map(o => `
@@ -754,22 +948,23 @@
       // ESCENA 4: IDEA DE INSPIRACIÓN
       else if (pasoActual === 3) {
         const ideasRapidas = [
-          "Estilo documental urbano y auténtico",
-          "Colores cálidos y energía ribereña",
-          "Estética cinematográfica nocturna",
-          "Dinámico y juvenil para Reels / TikTok"
+          "Estética collage urbano y color vibrante",
+          "Documental ribereño al atardecer en Barranca",
+          "Cámara dinámica juvenil para Reels / TikTok",
+          "Iluminación cinematográfica con esencia cultural"
         ];
 
         contenedor.innerHTML = `
           <section class="escena-card">
-            <span class="paso-etiqueta">Toma 04 · Dirección de arte</span>
+            <span class="cinta-estudio">Dirección de Arte</span>
+            <span class="paso-etiqueta">Toma 04 · Tu visión</span>
             <h2 class="pregunta-titulo">¿Qué idea o inspiración tienes en mente?</h2>
-            <p class="pregunta-subtitulo">Descríbenos una referencia, una emoción, una locación en Barrancabermeja o elige una vibra:</p>
+            <p class="pregunta-subtitulo">Cuéntanos una referencia visual, una emoción, una locación o combina estas vibras:</p>
 
             <textarea
               id="input-inspiracion"
               class="campo-textarea"
-              placeholder="Ej. Queremos grabar al atardecer cerca al río Magdalena con música en vivo y planos cercanos de la gente disfrutando..."
+              placeholder="Ej. Queremos mezclar música en vivo, arte callejero y tomas aéreas del río Magdalena con colores cálidos y mucha energía..."
               oninput="actualizarInspiracion(this.value)"
             >${respuestas.inspiracion}</textarea>
 
@@ -789,13 +984,14 @@
         `;
       }
 
-      // ESCENA 5: NOMBRE DEL ARTISTA, EMPRESA O LÍDER DEL PROYECTO
+      // ESCENA 5: NOMBRE DEL PROYECTO O CLIENTE
       else if (pasoActual === 4) {
         contenedor.innerHTML = `
           <section class="escena-card">
-            <span class="paso-etiqueta">Toma 05 · Créditos iniciales</span>
+            <span class="cinta-estudio">Créditos</span>
+            <span class="paso-etiqueta">Toma 05 · Identidad</span>
             <h2 class="pregunta-titulo">¿Cómo se llama tu proyecto, empresa o agrupación?</h2>
-            <p class="pregunta-subtitulo">Así sabremos cómo saludarte cuando recibamos tu cotización en WhatsApp.</p>
+            <p class="pregunta-subtitulo">Así sabremos cómo saludarte cuando recibamos tu solicitud en WhatsApp.</p>
 
             <input
               type="text"
@@ -816,15 +1012,18 @@
         `;
       }
 
-      // ESCENA 6: RESUMEN DE PRODUCCIÓN, COTIZACIÓN Y CONFIRMACIÓN POR WHATSAPP
+      // ESCENA 6: RESUMEN CREATIVO, COTIZACIÓN Y CONFIRMACIÓN POR WHATSAPP
       else if (pasoActual === 5) {
+        const seleccionados = obtenerObjetosServiciosSeleccionados();
+        const totalGeneral = calcularTotalCotizacion();
         const urlWa = construirEnlaceWhatsApp();
 
         contenedor.innerHTML = `
           <section class="escena-card">
-            <span class="paso-etiqueta">¡Corte y queda! · Tu resumen creativo</span>
-            <h2 class="pregunta-titulo">Propuesta lista para rodar</h2>
-            <p class="pregunta-subtitulo">Revisa los detalles de lo que quieres crear con <strong>Vamos Cultura</strong>:</p>
+            <span class="cinta-estudio">¡Corte y Queda!</span>
+            <span class="paso-etiqueta">Guion Final · Resumen de producción</span>
+            <h2 class="pregunta-titulo">Tu propuesta está lista para rodar</h2>
+            <p class="pregunta-subtitulo">Verifica las especificaciones de tu proyecto con <strong>Vamos Cultura</strong>:</p>
 
             <div class="ficha-resumen">
               <div class="ficha-fila">
@@ -836,12 +1035,17 @@
                 <span class="ficha-valor">${escaparHTML(respuestas.perfil)}</span>
               </div>
               <div class="ficha-fila">
-                <span class="ficha-clave">Servicio:</span>
-                <span class="ficha-valor">${escaparHTML(respuestas.servicio.titulo)}</span>
-              </div>
-              <div class="ficha-fila">
-                <span class="ficha-clave">Incluye:</span>
-                <span class="ficha-valor">${escaparHTML(respuestas.servicio.descripcion)}</span>
+                <span class="ficha-clave">Servicios (${seleccionados.length}):</span>
+                <div class="ficha-valor">
+                  <ul class="lista-servicios-resumen">
+                    ${seleccionados.map(s => `
+                      <li>
+                        • ${escaparHTML(s.titulo)}
+                        <span class="tag-precio">${formatearCOP(s.precio)}</span>
+                      </li>
+                    `).join("")}
+                  </ul>
+                </div>
               </div>
               <div class="ficha-fila">
                 <span class="ficha-clave">Objetivo:</span>
@@ -855,10 +1059,10 @@
 
             <div class="caja-total">
               <div>
-                <span class="caja-total-label">Inversión estimada</span>
-                <span class="caja-total-sub">Tarifa en pesos colombianos (COP)</span>
+                <span class="caja-total-label">Total paquete estimado</span>
+                <span class="caja-total-sub">Pesos colombianos (COP)</span>
               </div>
-              <span class="caja-total-precio">${formatearCOP(respuestas.servicio.precio)}</span>
+              <span class="caja-total-precio">${formatearCOP(totalGeneral)}</span>
             </div>
 
             <a href="${urlWa}" target="_blank" rel="noopener noreferrer" class="btn-whatsapp" onclick="abrirWhatsApp(event)">
@@ -867,7 +1071,7 @@
 
             <div class="navegacion-botones" style="margin-top: 12px;">
               <button type="button" class="btn-secundario" style="width: 100%;" onclick="irAnterior()">
-                ← Editar alguna respuesta
+                ← Editar servicios o respuestas
               </button>
             </div>
 
@@ -887,8 +1091,14 @@
       renderizarEscena();
     }
 
-    function seleccionarServicio(idServicio) {
-      respuestas.servicio = SERVICIOS_CATALOGO.find(s => s.id === idServicio) || null;
+    // Permite seleccionar o quitar múltiples servicios al tocar cada tarjeta
+    function alternarServicio(idServicio) {
+      const indice = respuestas.serviciosSeleccionados.indexOf(idServicio);
+      if (indice === -1) {
+        respuestas.serviciosSeleccionados.push(idServicio);
+      } else {
+        respuestas.serviciosSeleccionados.splice(indice, 1);
+      }
       renderizarEscena();
     }
 
@@ -939,20 +1149,24 @@
        6. GENERADOR DEL MENSAJE Y ENLACE OFICIAL DE WHATSAPP (+57 310 434 4957)
        ========================================================================== */
     function construirEnlaceWhatsApp() {
-      if (!respuestas.servicio) return `https://wa.me/${EMPRESA.whatsappNumero}`;
+      const seleccionados = obtenerObjetosServiciosSeleccionados();
+      if (seleccionados.length === 0) return `https://wa.me/${EMPRESA.whatsappNumero}`;
 
-      const precioFormateado = formatearCOP(respuestas.servicio.precio);
+      const totalGeneral = calcularTotalCotizacion();
+      const detalleServicios = seleccionados
+        .map(s => `  • *${s.titulo}* (${formatearCOP(s.precio)}): ${s.descripcion}`)
+        .join("\n");
 
       const mensaje = [
-        `¡Hola *${EMPRESA.nombre}* 🪀! Quiero confirmar una solicitud de servicio desde su cotizador web:`,
+        `¡Hola *${EMPRESA.nombre}* 🪀! Quiero confirmar una cotización desde su web:`,
         ``,
         `🎬 *Proyecto / Cliente:* ${respuestas.nombreContacto.trim()}`,
         `🎭 *Tipo de cliente:* ${respuestas.perfil}`,
-        `🎥 *Servicio requerido:* ${respuestas.servicio.titulo}`,
-        `📋 *Especificaciones:* ${respuestas.servicio.descripcion}`,
+        `🎥 *Servicios seleccionados (${seleccionados.length}):*`,
+        detalleServicios,
         `🎯 *Objetivo del proyecto:* ${respuestas.objetivo}`,
         `✨ *Idea / Inspiración:* ${respuestas.inspiracion.trim()}`,
-        `💰 *Valor cotizado:* ${precioFormateado}`,
+        `💰 *Total estimado:* ${formatearCOP(totalGeneral)}`,
         `📍 *Ciudad:* ${EMPRESA.ciudad}`,
         ``,
         `Quedo atento(a) para coordinar nuestra producción.`
@@ -961,14 +1175,13 @@
       return `https://wa.me/${EMPRESA.whatsappNumero}?text=${encodeURIComponent(mensaje)}`;
     }
 
-    // Respaldo de apertura directa para móviles y navegadores de escritorio
     function abrirWhatsApp(evento) {
       evento.preventDefault();
       const urlDestino = construirEnlaceWhatsApp();
       window.open(urlDestino, "_blank", "noopener,noreferrer");
     }
 
-    // Iniciar la primera escena al cargar la página
+    // Iniciar la primera escena
     renderizarEscena();
   </script>
 </body>
